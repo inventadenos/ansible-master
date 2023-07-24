@@ -8,3 +8,5 @@ ec2-user@192.0.0.57
 [file_servers]
 192.0.0.92
 
+[workstations]
+192.0.0.146
