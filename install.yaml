@@ -1,0 +1,59 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: update repository index for ubuntu
+    apt: 
+      update_cache: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install apache2 package for ubuntu
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: add php install package for ubuntu
+    apt:
+      name: libapache2-mod-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: update repository index for redhat
+    dnf:
+      update_cache: yes
+    when: ansible_distribution == "RedHat"
+
+  - name: install httpd package for redhat
+    dnf:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "RedHat"
+
+  - name: add php install package for redhat
+    dnf:
+      name: php
+      state: latest
+    when: ansible_distribution == "RedHat"
+
+
+  - name: update repository index for amazon linux
+    dnf:
+      name: '*'
+      state: latest
+      update_cache: yes
+    when: ansible_distribution == "Amazon"
+
+  - name: install httpd package for amazon linux
+    dnf:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "Amazon"
+
+  - name: add php install package for amazon linux
+    dnf:
+      name: php
+      state: latest
+    when: ansible_distribution == "Amazon"      
